@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.fangjia.sjdbc.po.User;
 import com.fangjia.sjdbc.repository.UserRepository;
 
-import io.shardingjdbc.core.api.HintManager;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -18,7 +17,8 @@ public class UserServiceImpl implements UserService {
 	
 	public List<User> list() {
 		// 强制路由主库
-		HintManager.getInstance().setMasterRouteOnly();
+		//HintManager.getInstance().setMasterRouteOnly();
+
 		return userRepository.list();
 	}
 
