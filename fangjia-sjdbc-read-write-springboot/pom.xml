@@ -43,13 +43,25 @@
 			<version>1.1.2</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/io.shardingjdbc/sharding-jdbc-core-spring-boot-starter -->
+		<!-- sharding-sphere -->
+		<!--<dependency>-->
+			<!--<groupId>io.shardingjdbc</groupId>-->
+			<!--<artifactId>sharding-jdbc-core-spring-boot-starter</artifactId>-->
+			<!--<version>2.0.3</version>-->
+		<!--</dependency>-->
+
 		<dependency>
-			<groupId>io.shardingjdbc</groupId>
-			<artifactId>sharding-jdbc-core-spring-boot-starter</artifactId>
-			<version>2.0.3</version>
+			<groupId>io.shardingsphere</groupId>
+			<artifactId>sharding-jdbc-orchestration-spring-boot-starter</artifactId>
+			<version>3.0.0</version>
 		</dependency>
 
+		<!--若使用zookeeper, 请加入下面Maven坐标-->
+		<dependency>
+			<groupId>io.shardingsphere</groupId>
+			<artifactId>sharding-orchestration-reg-zookeeper-curator</artifactId>
+			<version>3.0.0</version>
+		</dependency>
 
 	</dependencies>
 
