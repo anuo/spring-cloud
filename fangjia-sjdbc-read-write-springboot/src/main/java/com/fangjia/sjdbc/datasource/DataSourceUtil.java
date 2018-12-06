@@ -1,5 +1,7 @@
 package com.fangjia.sjdbc.datasource;
 
+import com.fangjia.sjdbc.datasource.config.DataSourceConfig;
+import com.fangjia.sjdbc.datasource.config.MultiDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

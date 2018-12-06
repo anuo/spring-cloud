@@ -1,6 +1,9 @@
-package com.fangjia.sjdbc.datasource;
+package com.fangjia.sjdbc.datasource.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.fangjia.sjdbc.datasource.DataBaseMessage;
+import com.fangjia.sjdbc.datasource.DataSourceContextHolder;
+import com.fangjia.sjdbc.datasource.DataSourceUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 

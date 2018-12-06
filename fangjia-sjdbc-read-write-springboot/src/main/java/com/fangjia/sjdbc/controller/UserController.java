@@ -1,5 +1,6 @@
 package com.fangjia.sjdbc.controller;
 
+import com.fangjia.sjdbc.datasource.DataSourceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,12 @@ public class UserController {
 		user.setCity("深圳");
 		user.setName("李四");
 		return userService.add(user);
+	}
+
+	@GetMapping("/changedb")
+	public Object changedb() {
+		DataSourceUtil.getInstance().changeDataSourceToDashboard();
+		return "changedb";
 	}
 	
 }
