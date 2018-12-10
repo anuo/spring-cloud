@@ -36,13 +36,13 @@ public class DataSourceUtil {
         currentDSInfoStr = currentDSInfoStr.replace("/"+currentDataSourceInfo.getDbName()+"?"
                 , "/"+newDataSourceInfo.getDbName()+"?");
 
-        //替换 账号
-        currentDSInfoStr = currentDSInfoStr.replace("username: "+currentDataSourceInfo.getUserName()
-                , "username: "+newDataSourceInfo.getUserName());
-
-        //替换 密码
-        currentDSInfoStr = currentDSInfoStr.replace("password: "+currentDataSourceInfo.getPwd()
-                , "password: "+newDataSourceInfo.getPwd());
+//        //替换 账号
+//        currentDSInfoStr = currentDSInfoStr.replace("username: "+currentDataSourceInfo.getUserName()
+//                , "username: "+newDataSourceInfo.getUserName());
+//
+//        //替换 密码
+//        currentDSInfoStr = currentDSInfoStr.replace("password: "+currentDataSourceInfo.getPwd()
+//                , "password: "+newDataSourceInfo.getPwd());
 
         //落zk 更新配置
         ZookeeperUtil.persist(path, currentDSInfoStr, client);

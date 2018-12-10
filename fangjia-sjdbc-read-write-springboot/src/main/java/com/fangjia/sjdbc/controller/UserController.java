@@ -49,7 +49,6 @@ public class UserController {
     public Object changedb(@PathVariable("oldDbName") String oldDbName, @PathVariable("newDbName") String newDbName) throws Exception {
 
         DataSourceInfo currentDsInfo = new DataSourceInfo();
-        DataSourceInfo newDsInfo = new DataSourceInfo();
 
         if (oldDbName.equals("car_manage")) {
             currentDsInfo = getCarManage();
@@ -58,10 +57,12 @@ public class UserController {
             currentDsInfo.setUserName("root");
             currentDsInfo.setPwd("MTIzNDU2");
 
-            newDsInfo.setDbName(newDbName);
-            newDsInfo.setUserName("root");
-            newDsInfo.setPwd("MTIzNDU2");
         }
+
+        DataSourceInfo newDsInfo = new DataSourceInfo();
+        newDsInfo.setDbName(newDbName);
+        newDsInfo.setUserName("root");
+        newDsInfo.setPwd("MTIzNDU2");
 
         DataSourceUtil.switchDataSource(currentDsInfo, newDsInfo);
 
@@ -72,7 +73,7 @@ public class UserController {
         DataSourceInfo currentDsInfo = new DataSourceInfo();
         currentDsInfo.setDbName("car_manage");
         currentDsInfo.setUserName("root");
-        currentDsInfo.setPwd("123456");
+        currentDsInfo.setPwd("root");
         return currentDsInfo;
     }
 
