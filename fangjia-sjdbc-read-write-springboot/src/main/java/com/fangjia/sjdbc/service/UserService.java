@@ -8,5 +8,7 @@ public interface UserService {
 	List<User> list();
 	
 	Long add(User user);
+
+	List<User> findGpsList();
 	
 }

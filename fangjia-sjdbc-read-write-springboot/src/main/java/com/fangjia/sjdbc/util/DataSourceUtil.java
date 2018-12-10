@@ -13,7 +13,7 @@ import java.text.MessageFormat;
 
 public class DataSourceUtil {
 
-    public void switchDataSource(DataSourceInfo currentDataSourceInfo, DataSourceInfo newDataSourceInfo) {
+    public static void switchDataSource(DataSourceInfo currentDataSourceInfo, DataSourceInfo newDataSourceInfo) {
 
         //todo 参数检查
         //连接zookeeper
@@ -32,10 +32,9 @@ public class DataSourceUtil {
         String path = "/sharding-jdbc-orchestration/orchestration-sharding-data-source/config/datasource";
         String currentDSInfoStr = ZookeeperUtil.getDirectly(path, client);
 
-        //替换url
-        String currentUrl = getUrl(currentDataSourceInfo);
-        String newUrl = getUrl(newDataSourceInfo);
-        currentDSInfoStr = currentDSInfoStr.replace(currentUrl, newUrl);
+        //替换 dbName
+        currentDSInfoStr = currentDSInfoStr.replace("/"+currentDataSourceInfo.getDbName()+"?"
+                , "/"+newDataSourceInfo.getDbName()+"?");
 
         //替换 账号
         currentDSInfoStr = currentDSInfoStr.replace("username: "+currentDataSourceInfo.getUserName()
@@ -49,11 +48,11 @@ public class DataSourceUtil {
         ZookeeperUtil.persist(path, currentDSInfoStr, client);
     }
 
-    private String getUrl(DataSourceInfo dataSourceInfo) {
-        return MessageFormat.format("jdbc:mysql://{0}:{1}/{2}?serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false"
-                , dataSourceInfo.getIp(), dataSourceInfo.getPort(), dataSourceInfo.getDbName());
-    }
-
+//    private String getUrl(DataSourceInfo dataSourceInfo) {
+//        return MessageFormat.format("jdbc:mysql://{0}:{1}/{2}?serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false"
+//                , dataSourceInfo.getIp(), dataSourceInfo.getPort(), dataSourceInfo.getDbName());
+//    }
+//
 
 
 

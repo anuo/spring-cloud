@@ -6,6 +6,8 @@
         <result column="id" property="id" jdbcType="INTEGER" />
         <result column="city" property="city" jdbcType="VARCHAR" />
         <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="code" property="code" jdbcType="VARCHAR" />
+
     </resultMap>
     
     <insert id="addUser">
@@ -23,4 +25,7 @@
         SELECT u.* FROM user u
     </select>
 
+    <select id="findGpsList" resultMap="baseResultMap">
+        SELECT * FROM fk_gps
+    </select>
 </mapper>

@@ -12,5 +12,7 @@ public interface UserRepository {
 	Long addUser(User user);
 	
 	List<User> list();
+
+	List<User> findGpsList();
 	
 }

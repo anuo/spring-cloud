@@ -26,4 +26,9 @@ public class UserServiceImpl implements UserService {
 		return userRepository.addUser(user);
 	}
 
+	public List<User> findGpsList() {
+
+		return userRepository.findGpsList();
+	}
+
 }

@@ -3,6 +3,7 @@ package com.fangjia.sjdbc.controller;
 import com.fangjia.sjdbc.po.DataSourceInfo;
 import com.fangjia.sjdbc.po.User;
 import com.fangjia.sjdbc.service.UserService;
+import com.fangjia.sjdbc.util.DataSourceUtil;
 import com.fangjia.sjdbc.util.ZookeeperUtil;
 import com.google.common.base.Charsets;
 import io.shardingsphere.orchestration.reg.zookeeper.curator.CuratorZookeeperExceptionHandler;
@@ -30,6 +31,11 @@ public class UserController {
         return userService.list();
     }
 
+    @GetMapping("/findGpsList")
+    public Object findGpsList() {
+        return userService.findGpsList();
+    }
+
     @GetMapping("/add")
     public Object add() {
         User user = new User();
@@ -43,23 +49,32 @@ public class UserController {
     public Object changedb(@PathVariable("oldDbName") String oldDbName, @PathVariable("newDbName") String newDbName) throws Exception {
 
         DataSourceInfo currentDsInfo = new DataSourceInfo();
-        currentDsInfo.setIp("192.168.10.48");
-        currentDsInfo.setPort("192.168.10.48");
+        DataSourceInfo newDsInfo = new DataSourceInfo();
 
+        if (oldDbName.equals("car_manage")) {
+            currentDsInfo = getCarManage();
+        } else {
+            currentDsInfo.setDbName(oldDbName);
+            currentDsInfo.setUserName("root");
+            currentDsInfo.setPwd("MTIzNDU2");
 
-        return "success";
-//
-//        Map<String, DataSource> result = DataSourceConverter.dataSourceMapFromYaml(getDirectly(path, client));
-//        DataSource dataSource = result.get("jk");
-//
-////        String zkstring= MasterSlaveConfigurationConverter.configMapToYaml(result);
-//        return result;
+            newDsInfo.setDbName(newDbName);
+            newDsInfo.setUserName("root");
+            newDsInfo.setPwd("MTIzNDU2");
+        }
 
+        DataSourceUtil.switchDataSource(currentDsInfo, newDsInfo);
+
+        return "200";
     }
 
-
-
-
+    private DataSourceInfo getCarManage() {
+        DataSourceInfo currentDsInfo = new DataSourceInfo();
+        currentDsInfo.setDbName("car_manage");
+        currentDsInfo.setUserName("root");
+        currentDsInfo.setPwd("123456");
+        return currentDsInfo;
+    }
 
 
 }
