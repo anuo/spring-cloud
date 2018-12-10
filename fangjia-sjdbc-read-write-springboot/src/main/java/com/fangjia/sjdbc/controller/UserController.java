@@ -54,15 +54,13 @@ public class UserController {
             currentDsInfo = getCarManage();
         } else {
             currentDsInfo.setDbName(oldDbName);
-            currentDsInfo.setUserName("root");
-            currentDsInfo.setPwd("MTIzNDU2");
+
 
         }
 
         DataSourceInfo newDsInfo = new DataSourceInfo();
         newDsInfo.setDbName(newDbName);
-        newDsInfo.setUserName("root");
-        newDsInfo.setPwd("MTIzNDU2");
+
 
         DataSourceUtil.switchDataSource(currentDsInfo, newDsInfo);
 
@@ -72,8 +70,6 @@ public class UserController {
     private DataSourceInfo getCarManage() {
         DataSourceInfo currentDsInfo = new DataSourceInfo();
         currentDsInfo.setDbName("car_manage");
-        currentDsInfo.setUserName("root");
-        currentDsInfo.setPwd("root");
         return currentDsInfo;
     }
 

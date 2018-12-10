@@ -36,23 +36,9 @@ public class DataSourceUtil {
         currentDSInfoStr = currentDSInfoStr.replace("/"+currentDataSourceInfo.getDbName()+"?"
                 , "/"+newDataSourceInfo.getDbName()+"?");
 
-//        //替换 账号
-//        currentDSInfoStr = currentDSInfoStr.replace("username: "+currentDataSourceInfo.getUserName()
-//                , "username: "+newDataSourceInfo.getUserName());
-//
-//        //替换 密码
-//        currentDSInfoStr = currentDSInfoStr.replace("password: "+currentDataSourceInfo.getPwd()
-//                , "password: "+newDataSourceInfo.getPwd());
-
         //落zk 更新配置
         ZookeeperUtil.persist(path, currentDSInfoStr, client);
     }
-
-//    private String getUrl(DataSourceInfo dataSourceInfo) {
-//        return MessageFormat.format("jdbc:mysql://{0}:{1}/{2}?serverTimezone=Asia/Shanghai&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false"
-//                , dataSourceInfo.getIp(), dataSourceInfo.getPort(), dataSourceInfo.getDbName());
-//    }
-//
 
 
 
